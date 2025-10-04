@@ -12,9 +12,6 @@ import c8Image from "../assets/c8.png";
 import d9Image from "../assets/d9.png";
 import q10Image from "../assets/q10.png";
 
-// Background image
-import doorImage from "../assets/door.png";
-
 const slides = [
   h1Image, l2Image, i3Image, t4Image, f5Image,
   c6Image, m7Image, c8Image, d9Image, q10Image
@@ -23,44 +20,44 @@ const slides = [
 export default function FullScreenVerticalSlider() {
   const [offset, setOffset] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const sliderRef = useRef(null);
-  const speed = 0.5; // scrolling speed
+  const speed = 0.5; // scrolling speed in px per frame
+  const containerRef = useRef(null);
 
-  // Each slide takes 90% of viewport height
-  const slideHeight = window.innerHeight * 0.9;
+  // Slide height as percentage of viewport (responsive)
+  const SLIDE_HEIGHT = 50; // in vh
+  const SLIDE_GAP = 20;    // gap between slides in px
 
   useEffect(() => {
     if (isPaused) return;
+
     let animationFrame;
 
     const animate = () => {
-      setOffset((prev) => (prev + speed) % (slides.length * slideHeight));
+      setOffset(prev => (prev + speed) % (slides.length * (window.innerHeight * (SLIDE_HEIGHT / 100) + SLIDE_GAP)));
       animationFrame = requestAnimationFrame(animate);
     };
 
     animate();
     return () => cancelAnimationFrame(animationFrame);
-  }, [isPaused, slideHeight]);
+  }, [isPaused]);
 
   return (
     <div
+      ref={containerRef}
       style={{
         width: "100vw",
         height: "100vh",
         overflow: "hidden",
         position: "relative",
-        backgroundColor: "#0c4060", // Blue background
-        backgroundImage: `url(${doorImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: "#084c70",
       }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Blue overlay on hover */}
+      {/* Blue overlay */}
       <div
         style={{
           position: "absolute",
@@ -68,35 +65,39 @@ export default function FullScreenVerticalSlider() {
           left: 0,
           width: "100%",
           height: "100%",
-          backgroundColor: "rgba(12, 64, 96, 0.5)", // semi-transparent blue
-          opacity: isPaused ? 0.6 : 0.3,
-          transition: "all 0.6s ease",
-          pointerEvents: "none",
+          backgroundColor: "rgba(12, 64, 96, 0.6)",
           zIndex: 1,
         }}
       />
 
-      {/* Main slider */}
+      {/* Slider */}
       <div
-        ref={sliderRef}
         style={{
-          display: "flex",
-          flexDirection: "column",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
           transform: `translateY(-${offset}px)`,
           transition: isPaused ? "transform 0.1s ease-out" : "none",
           zIndex: 2,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
         {[...slides, ...slides].map((img, index) => (
           <div
             key={index}
             style={{
-              height: `${slideHeight}px`,
+              width: "60%",              // slide width relative to container
+              padding: "30px",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
-              margin: "10px 0",
-              padding: "0 10px",
+              borderRadius: "12px",
+              overflow: "hidden",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
+              backgroundColor: "rgba(241, 245, 247, 0.6)",
             }}
           >
             <img
@@ -104,12 +105,10 @@ export default function FullScreenVerticalSlider() {
               alt={`slide-${index}`}
               style={{
                 width: "100%",
-                height: "90%",
-                objectFit: "contain",
-                borderRadius: "12px",
-                boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
-                transition: "transform 0.3s ease",
-                transform: isPaused ? "scale(1.02)" : "scale(1)",
+                height: "100%",
+                objectFit: "contain", // show full image
+                transition: "transform .3s ease",
+                transform: isPaused ? "scale(1.08)" : "scale(1)",
               }}
             />
           </div>
