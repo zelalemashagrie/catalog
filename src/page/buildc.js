@@ -1,14 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
 
 // Slider images
-import h1Image from "../assets/hrmmm.png";
+import h1Image from "../assets/h1.png";
 import l2Image from "../assets/l2.png";
 import i3Image from "../assets/i3.png";
 import t4Image from "../assets/t4.png";
 import f5Image from "../assets/f5.png";
 import c6Image from "../assets/c6.png";
 import m7Image from "../assets/m7.png";
-import d8Image from "../assets/d8.png";
+import c8Image from "../assets/c8.png";
+import d9Image from "../assets/d9.png";
 import q10Image from "../assets/q10.png";
 
 const slides = [
@@ -19,7 +20,8 @@ const slides = [
   { image: f5Image, title: "FMVS" },
   { image: c6Image, title: "Complaints Portal" },
   { image: m7Image, title: "MoR Portal" },
-  { image: d8Image, title: "Fiscal Device" },
+  { image: c8Image, title: "Fiscal Device" },
+   { image: d9Image, title: "MoR Revenue Dashboard" },
   { image: q10Image, title: "Manual Receipt Tracking & QR" },
 ];
 
@@ -63,7 +65,7 @@ function CarouselSlider() {
           display: "flex",
           width: `${slides.length * 2 * 50}%`,
           transform: `translateX(-${offset}%)`,
-          transition: "transform 0.1s linear",
+          transition: "transform 1.1s linear",
         }}
       >
         {[...slides, ...slides].map((slide, index) => (
@@ -71,8 +73,8 @@ function CarouselSlider() {
             key={index}
             style={{
               flex: `0 0 ${slideWidth}%`,
-              margin: "0 5px",
-              borderRadius: "15px",
+              margin: "6 5px",
+              borderRadius: "20px",
               overflow: "hidden",
               boxShadow: "0 6px 15px rgba(0,0,0,0.5)",
               background: "#fff",
@@ -84,7 +86,7 @@ function CarouselSlider() {
             <div
               style={{
                 width: "100%",
-                height: "300px",
+                height: "450px",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -95,7 +97,7 @@ function CarouselSlider() {
                 src={slide.image}
                 alt={slide.title}
                 style={{
-                  maxWidth: "90%",
+                  maxWidth: "900%",
                   maxHeight: "100%",
                   objectFit: "contain",
                   display: "block",
@@ -106,11 +108,11 @@ function CarouselSlider() {
             {/* Text below image */}
             <div
               style={{
-                padding: "10px",
+                padding: "0px",
                 textAlign: "center",
                 fontWeight: "bold",
-                fontSize: "16px",
-                color: "#333",
+                fontSize: "20px",
+                color: "#f81414ff",
               }}
             >
               {slide.title}

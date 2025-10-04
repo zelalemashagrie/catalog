@@ -6,7 +6,7 @@ import lmsImage from "../assets/relms.png";
 import itsmImage from "../assets/itsm.png";
 import tassImage from "../assets/tass.png";
 import fmvsImage from "../assets/fmvs.png";
-import complaintsImage from "../assets/complaints.png";
+import complaintsImage from "../assets/c6.png";
 import portalImage from "../assets/portal.png";
 import cshImage from "../assets/csh.png";
 import dashboardImage from "../assets/dash.png";
