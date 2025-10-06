@@ -21,7 +21,7 @@ function App() {
 
           <nav style={{ display: "flex", gap: "20px" }}>
              <Link to="/page/horz">
-              <h5 style={{ color: "blue", margin: 0 }}>MOR</h5>
+              <h5 style={{ color: "blue", margin: 0 }}>Ministry of Revenue</h5>
             </Link>
             <Link to="/page/buildb">
               <h5 style={{ color: "blue", margin: 0 }}>System</h5>

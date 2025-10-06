@@ -11,10 +11,11 @@ import m7Image from "../assets/m7.png";
 import c8Image from "../assets/c8.png";
 import d9Image from "../assets/d9.png";
 import q10Image from "../assets/q10.png";
+import mb11Image from "../assets/mb11.png";
 
 const slides = [
   h1Image, l2Image, i3Image, t4Image, f5Image,
-  c6Image, m7Image, c8Image, d9Image, q10Image
+  c6Image, m7Image, c8Image, d9Image, q10Image,mb11Image
 ];
 
 export default function FullScreenVerticalSlider() {
